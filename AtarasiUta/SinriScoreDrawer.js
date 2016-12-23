@@ -410,7 +410,9 @@ function SinriScoreDrawer(canvas_id){
         let font_setting='sans-serif';
         if(score.indentation){
             //line head 1,2,3... or All Sing
-            font_setting='serif';
+            font_setting='HiraMinProN-W3';//serif as common
+            //debug
+            //note_text=font_setting+':'+note_text+':'
         }
         this.writeText(
             note_text,
@@ -624,7 +626,7 @@ function SinriScoreDrawer(canvas_id){
             let line_data=this.parseScoreLineString(notes,type);
             
             /* new idea: set indentation and fill final empty */
-            if(has_numbered_lyric && type==='ALL_LYRIC' || type==='NUMBERED_LYRIC'){
+            if(has_numbered_lyric && (type==='ALL_LYRIC' || type==='NUMBERED_LYRIC')){
                 if(line_data[0]){
                     line_data[0].indentation=true;
                 }
@@ -640,7 +642,10 @@ function SinriScoreDrawer(canvas_id){
                 }else if(type==='ALL_LYRIC' || type==='NUMBERED_LYRIC'){
                     let tarinai=prev_score_line_cells+0-line_data.length;
                     for(let fill_count=0;fill_count<tarinai;fill_count++){
-                        line_data.push({note:' ',indentation:true});
+                        line_data.push({
+                            // indentation:true,
+                            note:' '                            
+                        });
                     }
                 }
             }
