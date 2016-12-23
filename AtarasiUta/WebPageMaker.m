@@ -14,7 +14,10 @@
     NSString * page_temp_file=[[NSBundle mainBundle]pathForResource:@"page_temp" ofType:@"htm" inDirectory:NULL forLocalization:NULL];
     NSString * page_temp=[[NSString alloc]initWithContentsOfFile:page_temp_file encoding:NSUTF8StringEncoding error:NULL];
     
-    NSString * code=[NSString stringWithFormat:page_temp,width,score_text];
+    NSString * SSD_file=[[NSBundle mainBundle]pathForResource:@"SinriScoreDrawer" ofType:@"js" inDirectory:NULL forLocalization:NULL];
+    NSString * SSD=[[NSString alloc]initWithContentsOfFile:SSD_file encoding:NSUTF8StringEncoding error:NULL];
+    
+    NSString * code=[NSString stringWithFormat:page_temp,width,score_text,SSD];
     return code;
 }
 

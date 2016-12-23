@@ -19,6 +19,7 @@
 		2F74B22B1E08C86F0031230A /* OnlineIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F74B22A1E08C86F0031230A /* OnlineIndexViewController.m */; };
 		2F74B22E1E0927120031230A /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F74B22D1E0927120031230A /* CommentViewController.m */; };
 		2F74B2371E092A790031230A /* ClientAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F74B2361E092A790031230A /* ClientAgent.m */; };
+		2F74B2391E0B84590031230A /* SinriScoreDrawer.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F74B2381E0B84590031230A /* SinriScoreDrawer.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		2F74B22D1E0927120031230A /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		2F74B2351E092A790031230A /* ClientAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientAgent.h; sourceTree = "<group>"; };
 		2F74B2361E092A790031230A /* ClientAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientAgent.m; sourceTree = "<group>"; };
+		2F74B2381E0B84590031230A /* SinriScoreDrawer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SinriScoreDrawer.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				2F687CA11E07C78D0093B175 /* Info.plist */,
 				2F687C901E07C78D0093B175 /* Supporting Files */,
 				2F687CAA1E07FFE20093B175 /* page_temp.htm */,
+				2F74B2381E0B84590031230A /* SinriScoreDrawer.js */,
 			);
 			path = AtarasiUta;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				2F687CA01E07C78D0093B175 /* LaunchScreen.storyboard in Resources */,
 				2F687C9D1E07C78D0093B175 /* Assets.xcassets in Resources */,
 				2F74B2251E0834B30031230A /* Books in Resources */,
+				2F74B2391E0B84590031230A /* SinriScoreDrawer.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

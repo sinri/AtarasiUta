@@ -37,6 +37,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // iOS9
+    if([self.tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
+        self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -116,8 +121,11 @@
             cell=[[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:cell_id_for_book];
             [cell setSelectionStyle:(UITableViewCellSelectionStyleBlue)];
             [cell setAccessoryType:(UITableViewCellAccessoryNone)];
+            
+//            [cell setBackgroundColor:[UIColor greenColor]];
         }
         [[cell textLabel]setText:[[self getBookList] objectAtIndex:indexPath.row]];
+//        [[cell textLabel] setBackgroundColor:[UIColor redColor]];
         if(indexPath.row==_current_book_index){
             [cell setAccessoryType:(UITableViewCellAccessoryCheckmark)];
         }else{
