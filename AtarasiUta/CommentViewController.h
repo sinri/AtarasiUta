@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SinriAppHelper.h"
 
 @interface CommentViewController : UIViewController <UIWebViewDelegate>
 

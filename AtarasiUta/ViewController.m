@@ -12,8 +12,9 @@
 
 @interface ViewController ()
 
-@property UIActivityIndicatorView *testActivityIndicator;
+//@property UIActivityIndicatorView *testActivityIndicator;
 @property UIDeviceOrientation currentOrientation;
+@property NSURLSessionDataTask * vcNetTask;
 
 @end
 
@@ -228,6 +229,25 @@
 }
 
 -(void)runApiGetDraftDetail{
+    if(_vcNetTask && [_vcNetTask state]!=NSURLSessionTaskStateCompleted){
+        [_vcNetTask cancel];
+    }
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self getDraftUrlForId:_draft_id]]];
+    _vcNetTask=[self executeAsyncRequest:request doneCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
+        NSError * jsonError;
+        NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
+        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+            [weakSelf setDraft_info:[[dict objectForKey:@"data"]objectForKey:@"draft"]];
+            [weakSelf updateWebViewContentWithDraftInfo];
+        }
+    } failCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
+        [self alertNetworkError:error ConfirmHandler:^(UIAlertAction *action) {
+            [[self navigationController]popViewControllerAnimated:YES];
+        }];
+    }];
+}
+/*
+-(void)runApiGetDraftDetailOld{
     __weak id instance= self;
     NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession * session = [NSURLSession sessionWithConfiguration:conf];
@@ -253,8 +273,6 @@
     [self beginWaitCircle];
     [task resume];
 }
-
-
 -(void)beginWaitCircle{
     [self stopWaitCircle];
     
@@ -276,5 +294,6 @@
     }
     [self.view setUserInteractionEnabled:YES];
 }
+ */
 
 @end

@@ -393,7 +393,8 @@ function SinriScoreDrawer(canvas_id){
                 'REPEAT_END_SINGLE':":|",
                 'LONGER_LINE':"ー",
                 'FIN':"‖",
-                'PHARSE_FIN':"|"
+                'PHARSE_FIN':"|",
+                'DOT':'・'
             }
             if(score.special_note==='AS_IS' && score.note){
                 note_text=score.note;
@@ -402,17 +403,16 @@ function SinriScoreDrawer(canvas_id){
             }
         }
         let text_point=this.getCertainPointOfCell(cell_attr,'center_of_cell');
+        let font_setting='sans-serif';
         if(score.title){
             //text_point as cancvs center
             text_point=[this.canvas.width/2,cell_attr.cell_offset_y+cell_attr.t+cell_attr.k*0.5];
             //ctx.measureText("foo").width 要不要考虑后面自动调整字体大小，现在还是算了
-        }
-        let font_setting='sans-serif';
+            font_setting='serif';//for ios, Palatino
+        }       
         if(score.indentation){
             //line head 1,2,3... or All Sing
-            font_setting='HiraMinProN-W3';//serif as common
-            //debug
-            //note_text=font_setting+':'+note_text+':'
+            font_setting='serif';//for ios, Palatino
         }
         this.writeText(
             note_text,
@@ -642,10 +642,7 @@ function SinriScoreDrawer(canvas_id){
                 }else if(type==='ALL_LYRIC' || type==='NUMBERED_LYRIC'){
                     let tarinai=prev_score_line_cells+0-line_data.length;
                     for(let fill_count=0;fill_count<tarinai;fill_count++){
-                        line_data.push({
-                            // indentation:true,
-                            note:' '                            
-                        });
+                        line_data.push({note:' ',indentation:true});
                     }
                 }
             }
@@ -808,6 +805,12 @@ function SinriScoreDrawer(canvas_id){
         delete note._times_multiply;
 
         let notes=[note];
+        if(note.dot){
+            notes.push({
+                special_note:'DOT'
+            });
+            note.dot=false;
+        }
         for(let j=0;j<has_long_line;j++){
             notes.push({
                 special_note:'LONGER_LINE'

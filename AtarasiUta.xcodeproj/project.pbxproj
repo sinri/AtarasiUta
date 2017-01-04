@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F097F881E13926700B5A81C /* SinriAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F097F871E13926700B5A81C /* SinriAppHelper.m */; };
+		2F097F8B1E13E4F000B5A81C /* ReadmeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F097F8A1E13E4F000B5A81C /* ReadmeViewController.m */; };
 		2F687C921E07C78D0093B175 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F687C911E07C78D0093B175 /* main.m */; };
 		2F687C951E07C78D0093B175 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F687C941E07C78D0093B175 /* AppDelegate.m */; };
 		2F687C981E07C78D0093B175 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F687C971E07C78D0093B175 /* ViewController.m */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F097F861E13926700B5A81C /* SinriAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriAppHelper.h; sourceTree = "<group>"; };
+		2F097F871E13926700B5A81C /* SinriAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinriAppHelper.m; sourceTree = "<group>"; };
+		2F097F891E13E4F000B5A81C /* ReadmeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadmeViewController.h; sourceTree = "<group>"; };
+		2F097F8A1E13E4F000B5A81C /* ReadmeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadmeViewController.m; sourceTree = "<group>"; };
 		2F687C8D1E07C78D0093B175 /* AtarasiUta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtarasiUta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F687C911E07C78D0093B175 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F687C931E07C78D0093B175 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,7 +83,8 @@
 		2F687C8F1E07C78D0093B175 /* AtarasiUta */ = {
 			isa = PBXGroup;
 			children = (
-				2F74B2241E0834B30031230A /* Books */,
+				2F097F861E13926700B5A81C /* SinriAppHelper.h */,
+				2F097F871E13926700B5A81C /* SinriAppHelper.m */,
 				2F687C931E07C78D0093B175 /* AppDelegate.h */,
 				2F687C941E07C78D0093B175 /* AppDelegate.m */,
 				2F74B2351E092A790031230A /* ClientAgent.h */,
@@ -86,6 +93,8 @@
 				2F687C971E07C78D0093B175 /* ViewController.m */,
 				2F74B22C1E0927120031230A /* CommentViewController.h */,
 				2F74B22D1E0927120031230A /* CommentViewController.m */,
+				2F097F891E13E4F000B5A81C /* ReadmeViewController.h */,
+				2F097F8A1E13E4F000B5A81C /* ReadmeViewController.m */,
 				2F74B2261E0838CA0031230A /* IndexViewController.h */,
 				2F74B2271E0838CA0031230A /* IndexViewController.m */,
 				2F74B2291E08C86F0031230A /* OnlineIndexViewController.h */,
@@ -95,9 +104,10 @@
 				2F687C9C1E07C78D0093B175 /* Assets.xcassets */,
 				2F687C9E1E07C78D0093B175 /* LaunchScreen.storyboard */,
 				2F687CA11E07C78D0093B175 /* Info.plist */,
-				2F687C901E07C78D0093B175 /* Supporting Files */,
 				2F687CAA1E07FFE20093B175 /* page_temp.htm */,
 				2F74B2381E0B84590031230A /* SinriScoreDrawer.js */,
+				2F687C901E07C78D0093B175 /* Supporting Files */,
+				2F74B2241E0834B30031230A /* Books */,
 			);
 			path = AtarasiUta;
 			sourceTree = "<group>";
@@ -184,7 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F097F881E13926700B5A81C /* SinriAppHelper.m in Sources */,
 				2F687CA91E07FD870093B175 /* WebPageMaker.m in Sources */,
+				2F097F8B1E13E4F000B5A81C /* ReadmeViewController.m in Sources */,
 				2F687C981E07C78D0093B175 /* ViewController.m in Sources */,
 				2F74B22E1E0927120031230A /* CommentViewController.m in Sources */,
 				2F74B22B1E08C86F0031230A /* OnlineIndexViewController.m in Sources */,

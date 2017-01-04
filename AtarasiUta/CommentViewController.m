@@ -14,7 +14,7 @@
 //@property UITextView *comment;
 //@property UISegmentedControl *pointSegment;
 @property UIWebView * webView;
-@property UIActivityIndicatorView *testActivityIndicator;
+//@property UIActivityIndicatorView *testActivityIndicator;
 @end
 
 @implementation CommentViewController
@@ -143,7 +143,7 @@
     [self stopWaitCircle];
 }
 //
-
+/*
 -(void)beginWaitCircle{
     [self stopWaitCircle];
     
@@ -165,6 +165,6 @@
     }
     [self.view setUserInteractionEnabled:YES];
 }
-
+*/
 
 @end

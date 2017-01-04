@@ -8,6 +8,7 @@
 
 #import "OnlineIndexViewController.h"
 #import "ViewController.h"
+#import "ReadmeViewController.h"
 
 @interface OnlineIndexViewController ()
 
@@ -17,7 +18,8 @@
 @property NSInteger current_book_index;
 @property NSInteger current_score_index;
 
-@property UIActivityIndicatorView *testActivityIndicator;
+//@property UIActivityIndicatorView *testActivityIndicator;
+@property NSURLSessionDataTask * vcNetTask;
 
 @end
 
@@ -25,6 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem * refreshBtn=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemRefresh) target:self action:@selector(runApiGetDraftList)];
+    [[self navigationItem]setRightBarButtonItem:refreshBtn];
+    
+    UIBarButtonItem * readmeBtn=[[UIBarButtonItem alloc]initWithTitle:@"About" style:(UIBarButtonItemStylePlain) target:self action:@selector(openReadme)];
+    [[self navigationItem]setLeftBarButtonItem:readmeBtn];
     
     _scoreDict=@{};
     _current_score_index=-1;
@@ -215,6 +223,11 @@
     }
 }
 
+-(void)openReadme{
+    ReadmeViewController * vc=[[ReadmeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - beneath NETWORK related
 
 -(NSString*)getDraftListUrl{
@@ -222,6 +235,33 @@
 }
 
 -(void)runApiGetDraftList{
+    if(_vcNetTask && [_vcNetTask state]!=NSURLSessionTaskStateCompleted){
+        [_vcNetTask cancel];
+    }
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self getDraftListUrl]]];
+    _vcNetTask=[self executeAsyncRequest:request doneCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
+        NSError * jsonError;
+        NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
+        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+//            dispatch_async(dispatch_get_main_queue(), ^(void){
+                // メインスレッドで処理する内容
+                NSLog(@"books: %@",[[dict objectForKey:@"data"] allKeys]);
+                [weakSelf setScoreDict:[dict objectForKey:@"data"]];
+                
+                [weakSelf setCurrent_book_index:0];
+                [weakSelf setCurrent_score_index:0];
+                
+                [[weakSelf tableView]reloadData];
+//            });
+        }
+    } failCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
+        [self alertNetworkError:error ConfirmHandler:^(UIAlertAction *action) {
+            //
+        }];
+    }];
+}
+/*
+-(void)runApiGetDraftListOld{
     __weak id instance= self;
     NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
     [conf setTimeoutIntervalForRequest:60];
@@ -273,6 +313,6 @@
     }
     [self.view setUserInteractionEnabled:YES];
 }
-
+*/
 
 @end
