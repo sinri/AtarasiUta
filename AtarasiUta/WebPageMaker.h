@@ -13,4 +13,5 @@
 +(NSString*)makeHTMLFromBook:(NSString*)book_code score:(NSString*)score_code width:(float)width;
 +(NSArray*)getBookList;
 +(NSArray*)getScoreListInBook:(NSString*)book_code;
++(NSString*)scoreTextOfScore:(NSString*)score_code inBook:(NSString*)book_code;
 @end
