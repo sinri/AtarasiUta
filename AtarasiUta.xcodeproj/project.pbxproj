@@ -22,9 +22,6 @@
 		2F74B22E1E0927120031230A /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F74B22D1E0927120031230A /* CommentViewController.m */; };
 		2F74B2371E092A790031230A /* ClientAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F74B2361E092A790031230A /* ClientAgent.m */; };
 		2F74B2391E0B84590031230A /* SinriScoreDrawer.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F74B2381E0B84590031230A /* SinriScoreDrawer.js */; };
-		2F9B97EF1E1F376C000D86EF /* SinriScoreDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B97EE1E1F376C000D86EF /* SinriScoreDrawerView.m */; };
-		2F9B97F31E1F6A90000D86EF /* SinriScoreDrawerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B97F21E1F6A90000D86EF /* SinriScoreDrawerParser.m */; };
-		2FEA6CFF1E2478210010D04C /* SinriScoreCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA6CFE1E2478210010D04C /* SinriScoreCellData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,12 +51,6 @@
 		2F74B2351E092A790031230A /* ClientAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientAgent.h; sourceTree = "<group>"; };
 		2F74B2361E092A790031230A /* ClientAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientAgent.m; sourceTree = "<group>"; };
 		2F74B2381E0B84590031230A /* SinriScoreDrawer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SinriScoreDrawer.js; sourceTree = "<group>"; };
-		2F9B97ED1E1F376C000D86EF /* SinriScoreDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriScoreDrawerView.h; sourceTree = "<group>"; };
-		2F9B97EE1E1F376C000D86EF /* SinriScoreDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinriScoreDrawerView.m; sourceTree = "<group>"; };
-		2F9B97F11E1F6A90000D86EF /* SinriScoreDrawerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriScoreDrawerParser.h; sourceTree = "<group>"; };
-		2F9B97F21E1F6A90000D86EF /* SinriScoreDrawerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinriScoreDrawerParser.m; sourceTree = "<group>"; };
-		2FEA6CFD1E2478210010D04C /* SinriScoreCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriScoreCellData.h; sourceTree = "<group>"; };
-		2FEA6CFE1E2478210010D04C /* SinriScoreCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinriScoreCellData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +83,6 @@
 		2F687C8F1E07C78D0093B175 /* AtarasiUta */ = {
 			isa = PBXGroup;
 			children = (
-				2F9B97F01E1F6A31000D86EF /* SinriScoreDrawerInOC */,
 				2F097F861E13926700B5A81C /* SinriAppHelper.h */,
 				2F097F871E13926700B5A81C /* SinriAppHelper.m */,
 				2F687C931E07C78D0093B175 /* AppDelegate.h */,
@@ -130,19 +120,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2F9B97F01E1F6A31000D86EF /* SinriScoreDrawerInOC */ = {
-			isa = PBXGroup;
-			children = (
-				2F9B97ED1E1F376C000D86EF /* SinriScoreDrawerView.h */,
-				2F9B97EE1E1F376C000D86EF /* SinriScoreDrawerView.m */,
-				2F9B97F11E1F6A90000D86EF /* SinriScoreDrawerParser.h */,
-				2F9B97F21E1F6A90000D86EF /* SinriScoreDrawerParser.m */,
-				2FEA6CFD1E2478210010D04C /* SinriScoreCellData.h */,
-				2FEA6CFE1E2478210010D04C /* SinriScoreCellData.m */,
-			);
-			name = SinriScoreDrawerInOC;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,7 +146,7 @@
 		2F687C851E07C78D0093B175 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = com.sinri;
 				TargetAttributes = {
 					2F687C8C1E07C78D0093B175 = {
@@ -223,12 +200,9 @@
 				2F687C981E07C78D0093B175 /* ViewController.m in Sources */,
 				2F74B22E1E0927120031230A /* CommentViewController.m in Sources */,
 				2F74B22B1E08C86F0031230A /* OnlineIndexViewController.m in Sources */,
-				2F9B97F31E1F6A90000D86EF /* SinriScoreDrawerParser.m in Sources */,
 				2F687C951E07C78D0093B175 /* AppDelegate.m in Sources */,
-				2F9B97EF1E1F376C000D86EF /* SinriScoreDrawerView.m in Sources */,
 				2F687C921E07C78D0093B175 /* main.m in Sources */,
 				2F74B2371E092A790031230A /* ClientAgent.m in Sources */,
-				2FEA6CFF1E2478210010D04C /* SinriScoreCellData.m in Sources */,
 				2F74B2281E0838CA0031230A /* IndexViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,15 +230,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -304,15 +286,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ClientAgent.h"
+#import "IndexViewController.h"
+#import "OnlineIndexViewController.h"
 
 @interface AppDelegate ()
 
@@ -28,10 +30,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    _mainVC=[[ViewController alloc]init];
-//    _indexVC=[[IndexViewController alloc]initWithStyle:(UITableViewStyleGrouped)];
-    _onlineIndexVC=[[OnlineIndexViewController alloc]initWithStyle:(UITableViewStylePlain)];
-    _navController=[[UINavigationController alloc]initWithRootViewController:_onlineIndexVC];
+    Boolean useOnlineContent=YES;
+    if(useOnlineContent){
+        _indexVC=[[OnlineIndexViewController alloc]initWithStyle:(UITableViewStylePlain)];
+    }else{
+        _indexVC=[[IndexViewController alloc]initWithStyle:(UITableViewStyleGrouped)];
+    }
+    _navController=[[UINavigationController alloc]initWithRootViewController:_indexVC];
     
     [_window setRootViewController:_navController];
     

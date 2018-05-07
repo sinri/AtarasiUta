@@ -141,6 +141,7 @@ function SinriScoreDrawer(canvas_id){
         ctx.stroke();
     }
     this.drawDot=function(point_center,radius){
+        radius=3;//Math.min(3,radius);
         this.drawCircle(point_center,radius,'fill');
     }
     this.drawArcForKeep=function(point_start_x,point_end_x,point_y,omega,triplets){

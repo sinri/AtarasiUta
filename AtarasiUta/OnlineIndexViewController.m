@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "ReadmeViewController.h"
 
+
 @interface OnlineIndexViewController ()
 
 //@property NSArray * books_array;
@@ -50,6 +51,8 @@
     if([self.tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
         self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
     }
+    
+//    [SinriScoreDrawerView test];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -142,13 +145,13 @@
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:cell_id_for_score];
         if(!cell){
-            cell=[[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:cell_id_for_score];
+            cell=[[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:cell_id_for_score];
             [cell setSelectionStyle:(UITableViewCellSelectionStyleBlue)];
             [cell setAccessoryType:(UITableViewCellAccessoryNone)];
         }
         id info = [[self getScoresInCurrentBook] objectAtIndex:indexPath.row];
-        [[cell textLabel] setText:[NSString stringWithFormat:@"Draft ID: %@",[info objectForKey:@"id"]]];
-        [[cell detailTextLabel]setText:[NSString stringWithFormat:@"%@ | %@",[info objectForKey:@"score_code"],[info objectForKey:@"score_title"]]];
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"Draft ID: %@",[info objectForKey:@"id"]]];
+        [[cell textLabel]setText:[NSString stringWithFormat:@"%@ | %@",[info objectForKey:@"score_code"],[info objectForKey:@"score_title"]]];
 //        if(indexPath.row==_current_score_index){
 //            [cell setAccessoryType:(UITableViewCellAccessoryCheckmark)];
 //        }else{
@@ -231,7 +234,7 @@
 #pragma mark - beneath NETWORK related
 
 -(NSString*)getDraftListUrl{
-    return @"https://sinri.cc/SikaScoreBook/ajaxGetDraftList";
+    return @"https://sinri.cc/api/SikaScoreBook/ajaxGetDraftList";
 }
 
 -(void)runApiGetDraftList{
@@ -242,7 +245,7 @@
     _vcNetTask=[self executeAsyncRequest:request doneCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
         NSError * jsonError;
         NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
-        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+        if([[dict objectForKey:@"code"] isEqualToString:@"OK"]){
 //            dispatch_async(dispatch_get_main_queue(), ^(void){
                 // メインスレッドで処理する内容
                 NSLog(@"books: %@",[[dict objectForKey:@"data"] allKeys]);
@@ -271,7 +274,7 @@
         NSLog(@"RESP=%@ ERROR=%@",response,error);
         NSError * jsonError;
         NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
-        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+        if([[dict objectForKey:@"code"] isEqualToString:@"OK"]){
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 // メインスレッドで処理する内容
                 NSLog(@"books: %@",[[dict objectForKey:@"data"] allKeys]);

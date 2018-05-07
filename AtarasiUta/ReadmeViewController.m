@@ -28,7 +28,7 @@
     
     [_webView setFrame:(CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))];
     
-    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sinri.cc/SikaScoreBook/atarasiuta_readme"]];
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sinri.cc/api/SikaScoreBook/atarasiuta_readme"]];
     NSLog(@"request as %@",request);
     [_webView loadRequest:request];
 }

@@ -15,6 +15,10 @@
 - (instancetype)initWithFrame:(CGRect)frame withScoreText:(NSString*)scoreText;
 - (instancetype)initWithFrame:(CGRect)frame withScoreText:(NSString*)scoreText autoCellWidth:(Boolean)autoCellWidth;
 
-+(void)test;
+-(void)setScoreText:(NSString*)scoreText;
+-(void)setBoardColor:(UIColor *)boardColor;
+-(void)setPenColor:(UIColor *)penColor;
+
+//+(void)test;
 
 @end

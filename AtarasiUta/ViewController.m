@@ -10,6 +10,8 @@
 #import "WebPageMaker.h"
 #import "CommentViewController.h"
 
+
+
 @interface ViewController ()
 
 //@property UIActivityIndicatorView *testActivityIndicator;
@@ -44,14 +46,16 @@
     [[self navigationItem] setTitle:@"Loading"];
     _currentOrientation=UIDeviceOrientationUnknown;
     
+    
     _webView = [[UIWebView alloc]init];
     [[_webView scrollView]setBounces:NO];
     [_webView setScalesPageToFit:YES];
     [_webView setDelegate:self];
     [self.view addSubview:_webView];
     
-    [self updateWebViewFrame];
-    [self updateWebViewContent];
+    
+    [self updateScoreViewFrame];
+    [self updateScoreViewContent];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -82,14 +86,16 @@
     
 }
 
--(void)updateWebViewContent{
+-(void)updateScoreViewContent{
+    NSLog(@"%s %d",__FUNCTION__,__LINE__);
     if(_draft_id){
         if(!_draft_info){
             [self runApiGetDraftDetail];
         }else{
-            [self updateWebViewContentWithDraftInfo];
+            [self updateScoreViewContentWithDraftInfo];
         }
     }else{
+        
         NSString * code=[WebPageMaker makeHTMLFromBook:_book_code score:_score_code width:self.view.frame.size.width-10];
         [_webView loadHTMLString:code baseURL:NULL];
         
@@ -97,18 +103,24 @@
     }
 }
 
--(void)updateWebViewContentWithDraftInfo{
+-(void)updateScoreViewContentWithDraftInfo{
+    NSLog(@"%s %d",__FUNCTION__,__LINE__);
     NSString * score_text=[_draft_info objectForKey:@"score"];
+    
     NSString * code=[WebPageMaker makeHTMLWithScoreText:score_text width:[[self view] frame].size.width-10];
     [[self webView] loadHTMLString:code baseURL:NULL];
     
-    [[self navigationItem]setTitle:[NSString stringWithFormat:@"%@ - %@",[_draft_info objectForKey:@"score_code"],[_draft_info objectForKey:@"score_title"]]];
+//    [[self navigationItem]setTitle:[NSString stringWithFormat:@"%@ - %@",[_draft_info objectForKey:@"score_code"],[_draft_info objectForKey:@"score_title"]]];
+    [[self navigationItem]setTitle:[NSString stringWithFormat:@"%@",[_draft_info objectForKey:@"score_code"]]];
     
     [self displayCommentEntrance];
 }
 
-- (void)updateWebViewFrame{
+- (void)updateScoreViewFrame{
+    NSLog(@"%s %d",__FUNCTION__,__LINE__);
+    
     [_webView setFrame:(CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))];
+    
 }
 
 
@@ -131,47 +143,47 @@
      *
      */
     /*
-    switch (device.orientation) {
-        case UIDeviceOrientationFaceUp:
-            NSLog(@"屏幕朝上平躺");
-            break;
-            
-        case UIDeviceOrientationFaceDown:
-            NSLog(@"屏幕朝下平躺");
-            break;
-        case UIDeviceOrientationUnknown:
-            //系統無法判斷目前Device的方向，有可能是斜置
-            NSLog(@"未知方向");
-            break;
-            
-        case UIDeviceOrientationLandscapeLeft:
-            NSLog(@"屏幕向左横置");
-            break;
-            
-        case UIDeviceOrientationLandscapeRight:
-            NSLog(@"屏幕向右橫置");
-            break;
-            
-        case UIDeviceOrientationPortrait:
-            NSLog(@"屏幕直立");
-            break;
-            
-        case UIDeviceOrientationPortraitUpsideDown:
-            NSLog(@"屏幕直立，上下顛倒");
-            break;
-            
-        default:
-            NSLog(@"无法辨识");
-            break;
-    }
-    */
+     switch (device.orientation) {
+     case UIDeviceOrientationFaceUp:
+     NSLog(@"屏幕朝上平躺");
+     break;
+     
+     case UIDeviceOrientationFaceDown:
+     NSLog(@"屏幕朝下平躺");
+     break;
+     case UIDeviceOrientationUnknown:
+     //系統無法判斷目前Device的方向，有可能是斜置
+     NSLog(@"未知方向");
+     break;
+     
+     case UIDeviceOrientationLandscapeLeft:
+     NSLog(@"屏幕向左横置");
+     break;
+     
+     case UIDeviceOrientationLandscapeRight:
+     NSLog(@"屏幕向右橫置");
+     break;
+     
+     case UIDeviceOrientationPortrait:
+     NSLog(@"屏幕直立");
+     break;
+     
+     case UIDeviceOrientationPortraitUpsideDown:
+     NSLog(@"屏幕直立，上下顛倒");
+     break;
+     
+     default:
+     NSLog(@"无法辨识");
+     break;
+     }
+     */
     BOOL needRefresh=NO;
     if(_currentOrientation==UIDeviceOrientationUnknown){
         if(device.orientation==UIDeviceOrientationLandscapeLeft
            || device.orientation==UIDeviceOrientationLandscapeRight
            || device.orientation==UIDeviceOrientationPortrait
            || device.orientation==UIDeviceOrientationPortraitUpsideDown
-        ){
+           ){
             _currentOrientation=device.orientation;
         }
         needRefresh=YES;
@@ -184,14 +196,14 @@
                || device.orientation==UIDeviceOrientationPortrait
                || device.orientation==UIDeviceOrientationPortraitUpsideDown
                )
-        ){
+           ){
             needRefresh=YES;
         }
     }
     
     if(needRefresh){
-        [self updateWebViewFrame];
-        [self updateWebViewContent];
+        [self updateScoreViewFrame];
+        [self updateScoreViewContent];
     }
 }
 
@@ -225,7 +237,7 @@
 #pragma mark - beneath NETWORK related
 
 -(NSString*)getDraftUrlForId:(NSString*)draft_id{
-    return [NSString stringWithFormat:@"https://sinri.cc/SikaScoreBook/ajaxGetScoreDraft/%@",draft_id];
+    return [NSString stringWithFormat:@"https://sinri.cc/api/SikaScoreBook/ajaxGetScoreDraft/%@",draft_id];
 }
 
 -(void)runApiGetDraftDetail{
@@ -236,9 +248,9 @@
     _vcNetTask=[self executeAsyncRequest:request doneCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
         NSError * jsonError;
         NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
-        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+        if([[dict objectForKey:@"code"] isEqualToString:@"OK"]){
             [weakSelf setDraft_info:[[dict objectForKey:@"data"]objectForKey:@"draft"]];
-            [weakSelf updateWebViewContentWithDraftInfo];
+            [weakSelf updateScoreViewContentWithDraftInfo];
         }
     } failCallback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error, id  _Nullable weakSelf) {
         [self alertNetworkError:error ConfirmHandler:^(UIAlertAction *action) {
@@ -246,54 +258,5 @@
         }];
     }];
 }
-/*
--(void)runApiGetDraftDetailOld{
-    __weak id instance= self;
-    NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession * session = [NSURLSession sessionWithConfiguration:conf];
-    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self getDraftUrlForId:_draft_id]]];
-    NSURLSessionDataTask * task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"RESP=%@ ERROR=%@",response,error);
-        NSError * jsonError;
-        NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
-        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                // メインスレッドで処理する内容
-                [instance setDraft_info:[[dict objectForKey:@"data"]objectForKey:@"draft"]];
-                
-                [instance updateWebViewContentWithDraftInfo];
-            });
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [instance stopWaitCircle];
-            });
-        }
-    }];
-    
-    [self beginWaitCircle];
-    [task resume];
-}
--(void)beginWaitCircle{
-    [self stopWaitCircle];
-    
-    _testActivityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _testActivityIndicator.center = self.view.center;//只能设置中心，不能设置大小
-    [self.view addSubview:_testActivityIndicator];
-    _testActivityIndicator.color = [UIColor redColor]; // 改变圈圈的颜色为红色； iOS5引入
-    [_testActivityIndicator startAnimating]; // 开始旋转
-    
-    [self.view setUserInteractionEnabled:NO];
-    
-}
--(void)stopWaitCircle{
-    if(_testActivityIndicator){
-        [_testActivityIndicator stopAnimating]; // 结束旋转
-        [_testActivityIndicator setHidesWhenStopped:YES]; //当旋转结束时隐藏
-        [_testActivityIndicator removeFromSuperview];
-        _testActivityIndicator = NULL;
-    }
-    [self.view setUserInteractionEnabled:YES];
-}
- */
 
 @end

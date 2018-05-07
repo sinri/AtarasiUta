@@ -14,6 +14,7 @@
 //@property UITextView *comment;
 //@property UISegmentedControl *pointSegment;
 @property UIWebView * webView;
+//@property WKWebView * webView;
 //@property UIActivityIndicatorView *testActivityIndicator;
 @end
 
@@ -44,15 +45,31 @@
     
     [[self navigationItem]setTitle:@"Feedback"];
     
+    UIBarButtonItem * reloadBtn=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemRefresh) target:self action:@selector(reloadCommentPage)];
+    [[self navigationItem]setRightBarButtonItem:reloadBtn];
+    
+    
     _webView = [[UIWebView alloc]init];
     [[_webView scrollView]setBounces:NO];
     [_webView setScalesPageToFit:YES];
     [_webView setDelegate:self];
     [self.view addSubview:_webView];
     
+    /*
+    _webView = [[WKWebView alloc]init];
+    [[_webView scrollView]setBounces:NO];
+    [self.view addSubview:_webView];
+    */
+    
     [_webView setFrame:(CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))];
     
-    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://sinri.cc/SikaScoreBook/comment/%@/%@",[_draftInfo objectForKey:@"id"],[ClientAgent getClientSN]]]];
+    [self reloadCommentPage];
+}
+
+-(void)reloadCommentPage{
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://sinri.cc/frontend/SikaScoreBookComment.html?score_id=%@&client_sn=%@",
+                                                                                            //@"https://sinri.cc/api/SikaScoreBook/comment/%@/%@",
+                                                                                            [_draftInfo objectForKey:@"id"],[ClientAgent getClientSN]]]];
     NSLog(@"request as %@",request);
     [_webView loadRequest:request];
 }
@@ -131,17 +148,26 @@
 }
 */
 
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSLog(@"webview shouldStartLoadWithRequest %@ , type %lu",[[request URL]absoluteString],(unsigned long)NSAggregateExpressionType);
+    return YES;
+}
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [self beginWaitCircle];
+    NSLog(@"webViewDidStartLoad");
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [self stopWaitCircle];
+    NSLog(@"webViewDidFinishLoad");
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopWaitCircle];
+    NSLog(@"webView didFailLoadWithError: %@",error);
 }
+
+
 //
 /*
 -(void)beginWaitCircle{

@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 //#import "ViewController.h"
-//#import "IndexViewController.h"
-#import "OnlineIndexViewController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,7 +17,8 @@
 @property UINavigationController *navController;
 //@property ViewController *mainVC;
 //@property IndexViewController* indexVC;
-@property OnlineIndexViewController * onlineIndexVC;
+//@property OnlineIndexViewController * onlineIndexVC;
+@property UITableViewController *indexVC;
 
 @end
 

@@ -93,7 +93,7 @@
         
 //        NSError * jsonError;
 //        NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&jsonError];
-//        if([[dict objectForKey:@"result"] isEqualToString:@"OK"]){
+//        if([[dict objectForKey:@"code"] isEqualToString:@"OK"]){
 //            dispatch_async(dispatch_get_main_queue(), ^(void){
 //                // メインスレッドで処理する内容
 //                [instance setDraft_info:[[dict objectForKey:@"data"]objectForKey:@"draft"]];
